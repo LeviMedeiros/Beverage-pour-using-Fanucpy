@@ -1,6 +1,6 @@
 from Beverage_Pour.First_test import RightBot
 
-def right_bot_routine():
+def right_bot_routine(max_speed,max_accel):
     # get robot state
     print(f"Current pose: {RightBot.get_curpos()}")
     print(f"Current joints: {RightBot.get_curjpos()}")
@@ -9,8 +9,8 @@ def right_bot_routine():
     RightBot.move(
         "joint",
         vals=[19.0, 66.0, -33.0, 18.0, -30.0, -33.0],
-        velocity=100,
-        acceleration=100,
+        velocity=max_speed,
+        acceleration=max_accel,
         cnt_val=0,
         linear=False
     )
@@ -18,8 +18,8 @@ def right_bot_routine():
     RightBot.move(
         "pose",
         vals=[0.0, -28.0, -35.0, 0.0, -55.0, 0.0],
-        velocity=50,
-        acceleration=50,
+        velocity=max_speed,
+        acceleration=max_accel,
         cnt_val=0,
         linear=False
     )

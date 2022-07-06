@@ -26,9 +26,11 @@ LeftBot.__version__()
 LeftBot.connect()  
 
 if __name__=='__main__':
-    p1 = Process(target = left_bot_routine(RightBot))
+    max_speed = 100
+    max_accel = 100 
+    p1 = Process(target = left_bot_routine(max_speed,max_accel))
     p1.start()
-    p2 = Process(target = right_bot_routine(LeftBot))
+    p2 = Process(target = right_bot_routine(max_speed,max_accel))
     p2.start()
 
 
