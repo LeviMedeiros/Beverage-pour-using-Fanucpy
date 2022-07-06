@@ -38,7 +38,7 @@ def right_bot_routine():
         linear=False
     )
 
-#test
+#test response
 
 def left_bot_routine():
     LeftBot.__version__()
