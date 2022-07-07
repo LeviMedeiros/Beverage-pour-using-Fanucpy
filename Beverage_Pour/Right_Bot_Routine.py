@@ -1,4 +1,4 @@
-from Beverage_Pour.First_test import RightBot
+from Beverage_Pour.Pour_control import RightBot
 
 def right_bot_routine(max_speed,max_accel):
     # get robot state
