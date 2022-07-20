@@ -40,9 +40,9 @@ def right_bot_routine():
 
 #test response
 
-def left_bot_routine():
-    LeftBot.__version__()
-    LeftBot.connect()
+#def left_bot_routine():
+#    LeftBot.__version__()
+#    LeftBot.connect()
     
 
 
