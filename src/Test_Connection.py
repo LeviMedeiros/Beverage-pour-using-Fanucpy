@@ -1,31 +1,21 @@
 import multiprocessing
+from pathlib import PureWindowsPath
 from fanucpy import Robot
 from multiprocessing import Process
 
-NUM_THREADS = 2
-
-RightBot = Robot(
-    robot_model="Fanuc",
-    host="192.168.5.52",
-    port=18735,
-    ee_DO_type="RDO",
-    ee_DO_num=7,
-)
-
-LeftBot = Robot(
-    robot_model="Fanuc",
-    host="192.168.5.153",
-    port=18735,
-    ee_DO_type="RDO",
-    ee_DO_num=7,
-)
-
-
 def left_bot_routine():
     
-    LeftBot.__version__()
+    #LeftBot.__version__()
+    LeftBot = Robot(
+        robot_model="Fanuc",
+        host="192.168.5.153",
+        port=18735,
+        ee_DO_type="RDO",
+        ee_DO_num=7,
+    )
     LeftBot.connect() 
-    for x in range(1,50): 
+    print(f"Connected to left")
+    for x in range(1,5): 
         LeftBot.move(
             "joint",
             vals=[-90, 0, 0, 0, 0, 0],
@@ -48,9 +38,18 @@ def left_bot_routine():
 
 
 def right_bot_routine():
-    RightBot.__version__()
+    #RightBot.__version__()#What do
+    RightBot = Robot(
+        robot_model="Fanuc",
+        host="192.168.5.52",
+        port=18735,
+        ee_DO_type="RDO",
+        ee_DO_num=7,
+    )
     RightBot.connect()
-    for x in range(1,50):
+
+    print(f"Connected to right")
+    for x in range(1,5):
         RightBot.move(
             "joint",
             vals=[90, 0, 0, 0, 0, 0],
@@ -73,10 +72,13 @@ def right_bot_routine():
 
 
 if __name__=='__main__':
+    print(f"main process has begun")
     max_speed = 100
     max_accel = 100 
     
-    p1 = multiprocessing.Process(target = left_bot_routine())
-    p2 = multiprocessing.Process(target = right_bot_routine())
+    p1 = multiprocessing.Process(target = left_bot_routine)
+    p2 = multiprocessing.Process(target = right_bot_routine)
     p1.start()
+    print(f"started left process")
     p2.start()
+    print(f"right process started")
