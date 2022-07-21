@@ -1,5 +1,6 @@
+import multiprocessing
 from fanucpy import Robot
-from threading import Thread
+from multiprocessing import Process
 
 NUM_THREADS = 2
 
@@ -23,49 +24,51 @@ LeftBot = Robot(
 def left_bot_routine():
     
     LeftBot.__version__()
-    LeftBot.connect()  
-    LeftBot.move(
-        "joint",
-        vals=[-90, 0, 0, 0, 0, 0],
-        velocity=50,
-        acceleration=50,
-        cnt_val=0,
-        linear=False
-    )
-    print(f"Current pose: {LeftBot.get_curpos()}")
-    LeftBot.move(
-        "joint",
-        vals=[0, 0, 0, 0, 0, 0],
-        velocity=50,
-        acceleration=50,
-        cnt_val=0,
-        linear=False
-    )
-    print(f"Current pose: {LeftBot.get_curpos()}")
+    LeftBot.connect() 
+    for x in range(1,50): 
+        LeftBot.move(
+            "joint",
+            vals=[-90, 0, 0, 0, 0, 0],
+            velocity=50,
+            acceleration=50,
+            cnt_val=0,
+            linear=False
+        )
+        print(f"Current pose: {LeftBot.get_curpos()}")
+        LeftBot.move(
+            "joint",
+            vals=[0, 0, 0, 0, 0, 0],
+            velocity=50,
+            acceleration=50,
+            cnt_val=0,
+            linear=False
+        )
+        print(f"Current pose: {LeftBot.get_curpos()}")
 
 
 
 def right_bot_routine():
     RightBot.__version__()
     RightBot.connect()
-    RightBot.move(
-        "joint",
-        vals=[90, 0, 0, 0, 0, 0],
-        velocity=50,
-        acceleration=50,
-        cnt_val=0,
-        linear=False
-    )
-    print(f"Current pose: {RightBot.get_curpos()}")
-    RightBot.move(
-        "joint",
-        vals=[0, 0, 0, 0, 0, 0],
-        velocity=50,
-        acceleration=50,
-        cnt_val=0,
-        linear=False
-    )
-    print(f"Current pose: {RightBot.get_curpos()}")
+    for x in range(1,50):
+        RightBot.move(
+            "joint",
+            vals=[90, 0, 0, 0, 0, 0],
+            velocity=50,
+            acceleration=50,
+            cnt_val=0,
+            linear=False
+        )
+        print(f"Current pose: {RightBot.get_curpos()}")
+        RightBot.move(
+            "joint",
+            vals=[0, 0, 0, 0, 0, 0],
+            velocity=50,
+            acceleration=50,
+            cnt_val=0,
+            linear=False
+        )
+        print(f"Current pose: {RightBot.get_curpos()}")
 
 
 
@@ -73,9 +76,7 @@ if __name__=='__main__':
     max_speed = 100
     max_accel = 100 
     
-    worker = Thread(target = left_bot_routine())
-    worker2 = Thread(target = right_bot_routine())
-    worker.daemon = True
-    worker2.daemon = True
-    worker.start()
-    worker2.start()
+    p1 = multiprocessing.Process(target = left_bot_routine())
+    p2 = multiprocessing.Process(target = right_bot_routine())
+    p1.start()
+    p2.start()
