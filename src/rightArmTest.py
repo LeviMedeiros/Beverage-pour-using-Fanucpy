@@ -15,7 +15,7 @@ robot.connect()
 # move in joint space
 robot.move(
     "joint",
-    vals=[0, 0, 0, 0, 0, 0],
+    vals=[90, 0, 0, 0, 0, 0],
     velocity=50,
     acceleration=50,
     cnt_val=0,
