@@ -24,6 +24,17 @@ def right_bot_routine(routine):
             cnt_val=0,
             linear=False
         )
+
+        # RightBot.move(
+        #     "joint",
+        #     vals=[45, 0, 90, 0, 0, 0],
+        #     velocity=50,
+        #     acceleration=50,
+        #     cnt_val=0,
+        #     linear=False
+        # )
+
+
         print(f"Current pose: {RightBot.get_curpos()}")
         RightBot.move(
             "joint",

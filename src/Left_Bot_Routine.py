@@ -23,6 +23,16 @@ def left_bot_routine(routine):
                 linear=False
             )
             print(f"Current pose: {LeftBot.get_curpos()}")
+
+            # LeftBot.move(
+            #     "joint",
+            #     vals=[-45, 90, 90, 0, 0, 0],
+            #     velocity=50,
+            #     acceleration=50,
+            #     cnt_val=0,
+            #     linear=False
+            # )
+
             LeftBot.move(
                 "joint",
                 vals=[0, 0, 0, 0, 0, 0],
@@ -41,6 +51,16 @@ def left_bot_routine(routine):
                 cnt_val=0,
                 linear=False
             )
+
+            # LeftBot.move(
+            #     "joint",
+            #     vals=[-75, 0, 45, 0, 0, 0],
+            #     velocity=75,
+            #     acceleration=75,
+            #     cnt_val=0,
+            #     linear=False
+            # )
+
             print(f"Current pose: {LeftBot.get_curpos()}")
             LeftBot.move(
                 "joint",

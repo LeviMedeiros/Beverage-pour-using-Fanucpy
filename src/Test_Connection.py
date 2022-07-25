@@ -53,8 +53,8 @@ def right_bot_routine():
         RightBot.move(
             "joint",
             vals=[90, 0, 0, 0, 0, 0],
-            velocity=50,
-            acceleration=50,
+            velocity=25,
+            acceleration=25,
             cnt_val=0,
             linear=False
         )
