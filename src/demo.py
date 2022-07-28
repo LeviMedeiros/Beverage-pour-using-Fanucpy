@@ -14,10 +14,10 @@ robot.connect()
 
 # move in joint space
 robot.move(
-    "joint",
-    vals=[0, 0, 0, 0, 0, 0],
-    velocity=50,
-    acceleration=50,
+    "pose",
+    vals=[234, 737, 248, 4, -77, -94],
+    velocity=10,
+    acceleration=10,
     cnt_val=0,
     linear=False
 )
