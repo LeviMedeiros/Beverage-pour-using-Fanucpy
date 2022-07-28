@@ -1,5 +1,4 @@
 import multiprocessing
-from pathlib import PureWindowsPath
 from fanucpy import Robot
 from multiprocessing import Process
 
