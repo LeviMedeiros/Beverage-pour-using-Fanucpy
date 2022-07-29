@@ -180,7 +180,7 @@ def left_bot_routine(routine):
     #     print(f"Waiting for cup to pour in")
     #     #Pour half the can out for xl beers
     
-    if routine == 1 or routine==2 or routine==3:
+    if routine != 0:
         #Leave pouring safely current waypoint totally wrong
         LeftBot.move("joint", vals=[26, 95, -87, 61, 86, 105], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
