@@ -90,7 +90,7 @@ def left_bot_routine(routine):
         #Open Can
         print(f"Beginning Opening Can routine")
         LeftBot.move("joint", vals=[-45, 44, -61, 16, 78, 81], velocity=max_vel, acceleration=max_accel,
-            cnt_val=0,
+            cnt_val=25,
             linear=False
         )
         #input("press enter to continue")
@@ -99,16 +99,20 @@ def left_bot_routine(routine):
             linear=False
         )
         #input("press enter to continue")
-        LeftBot.move("joint", vals=[-41.135, 93.7, -75.15, 53.997, 77.785, 94.7], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[-41.406, 93.404, -74.870, 54.548, 77.785, 98.372], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
         #input("press enter to continue")
-        LeftBot.move("joint", vals=[-40.814, 93.226, -76.216, 53.520, 78.261, 95.459], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[-40.990, 93.161, -75.437, 54.548, 77.785, 98.371], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
         #input("press enter to continue")
+        LeftBot.move("joint", vals=[-40.687, 93.271, -75.882, 54.548, 77.785, 98.371], velocity=max_vel, acceleration=max_accel,
+            cnt_val=0,
+            linear=False
+        )
         LeftBot.move("joint", vals=[-40.814, 102, -75, 54, 78, 95.5], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
@@ -121,7 +125,7 @@ def left_bot_routine(routine):
         )
         #input("press enter to continue") 
         LeftBot.move("joint", vals=[-49, 40, -66, 0, 68, 90], velocity=max_vel, acceleration=max_accel,
-            cnt_val=0,
+            cnt_val=50,
             linear=False
         )
 
@@ -136,40 +140,40 @@ def left_bot_routine(routine):
         #Pour half the can out for standard can
         print(f"Waiting for cup to pour into")
     
-        LeftBot.move("joint", vals=[45, 35, -32, -22, 35, 46], velocity=max_vel, acceleration=max_accel,
+        # LeftBot.move("joint", vals=[45, 35, -32, -22, 35, 46], velocity=max_vel, acceleration=max_accel,
+        #     cnt_val=0,
+        #     linear=False
+        # )
+        #move to initial pour position
+        LeftBot.move("joint", vals=[33.584, 68.944, -18.5, 92.4, 91.342, 1], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-
-        LeftBot.move("joint", vals=[45, 34.5, -22.5, -22, 35, 17.5], velocity=max_vel, acceleration=max_accel,
+        #start pouring
+        LeftBot.move("joint", vals=[33.584, 68.944, -18.5, 92.4, 91.342, -58], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-
-        LeftBot.move("joint", vals=[45, 31.7, -15.85, -21.5, 20, -64.6], velocity=max_vel, acceleration=max_accel,
-            cnt_val=0,
-            linear=False
-    )
-
-        LeftBot.move("joint", vals=[45, 30.629, -1.153, -61.167, 8.2, -23.961], velocity=100, acceleration=100,
+        #2nd pouring position
+        LeftBot.move("joint", vals=[33.658, 75.74, -0.4, 91.740, 98.84, -118.8], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )        
-
-        LeftBot.move("joint", vals=[45, 31.7, -15.85, -21.5, 20, -64.6], velocity=100, acceleration=100,
+        #3rd pouring position
+        LeftBot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
-    )
-
-        LeftBot.move("joint", vals=[45, 30.629, -1.153, -61.167, 8.2, -23.961], velocity=100, acceleration=100,
-            cnt_val=0,
-            linear=False
-        )        
-
-        LeftBot.move("joint", vals=[45, 31.7, -15.85, -21.5, 20, -64.6], velocity=100, acceleration=100,
-            cnt_val=0,
-            linear=False
-    )
+        )
+        #shake
+        for i in range(1,3):
+            LeftBot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=100, acceleration=100,
+                cnt_val=0,
+                linear=False
+            )      
+            LeftBot.move("joint", vals=[33, 54, -6, 90, 90, -180], velocity=100, acceleration=100,
+                cnt_val=0,
+                linear=False
+            )
 
     # elif routine == 2:
     #     #Pour the whole can out for bubly/diet coke
@@ -181,12 +185,19 @@ def left_bot_routine(routine):
     #     #Pour half the can out for xl beers
     
     if routine != 0:
-        #Leave pouring safely current waypoint totally wrong
-        LeftBot.move("joint", vals=[26, 95, -87, 61, 86, 105], velocity=max_vel, acceleration=max_accel,
-            cnt_val=0,
+        #Leave pouring safely
+        LeftBot.move("joint",vals=[0, 3, -15, 90, 90, -180], velocity=max_vel,acceleration = max_accel,
+            cnt_val=25,
             linear=False
         )
-
+        LeftBot.move("joint", vals=[45, -5, -15, 21, 20, 90], velocity=max_vel, acceleration=max_accel,
+            cnt_val=25,
+            linear=False
+        )
+        LeftBot.move("joint", vals=[30, -5, -25, 21, 20, 90], velocity=max_vel, acceleration=max_accel,
+            cnt_val=25,
+            linear=False
+        )
         #Prepare to drop can
         LeftBot.move("joint", vals=[15, 66, -86, -28, 83, 93], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
