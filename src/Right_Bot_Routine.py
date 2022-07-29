@@ -1,8 +1,8 @@
 from fanucpy import Robot
 import time
-def right_bot_rountine(routine):
-    max_vel = 50
-    max_accel = 50
+def right_bot_rountine(routine,leftset,rightset):
+    max_vel = 5
+    max_accel = 5
 
     RightBot = Robot(
         robot_model="Fanuc",
@@ -37,7 +37,7 @@ def right_bot_rountine(routine):
         linear=False
     )
 
-    if routine == 1:
+    if routine == 2:
         # time.sleep(5)
 
         #input("press enter to continue")
@@ -60,21 +60,26 @@ def right_bot_rountine(routine):
         # input("press enter to continue")
         RightBot.move("joint", vals=[23, 15, -36.866, 0.521, 37.874, 0],
         velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
+        
+        #Waiting to be ready to pour
+        rightset.set()
+        leftset.wait()
+        rightset.unset()
 
         #RECEIVING THE DRINK
-        input("press enter to continue")
+        # input("press enter to continue")
         RightBot.move("joint", vals=[-40.693, 36.726, -37.054, 0.125, -2.634, 0],
         velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)        
 
-        input("press enter to continue")
+        # input("press enter to continue")
         RightBot.move("joint", vals=[-40.693, 36.429, -36.022, 0.125, 14.261, 0],
         velocity=10, acceleration=10, cnt_val=0, linear=False)        
 
-        input("press enter to continue")
+        # input("press enter to continue")
         RightBot.move("joint", vals=[-40.693, 49.2, -28.94, 0.125, 30.484, 0],
         velocity=10, acceleration=10, cnt_val=0, linear=False)        
 
-        input("press enter to continue")
+        # input("press enter to continue")
         RightBot.move("joint", vals=[-40.693, -24.06, -28.94, 0.125, 30.484, 0],
         velocity=10, acceleration=10, cnt_val=0, linear=False)     
 

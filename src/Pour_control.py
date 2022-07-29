@@ -13,7 +13,7 @@ from tkinter import ttk
 import time
 
 #Import Files that contain the routines for each robot
-from Right_Bot_Routine import right_bot_routine
+from Right_Bot_Routine import right_bot_rountine
 from Left_Bot_Routine import left_bot_routine
 
 #Declare variables used to change routine per beverage selection
@@ -22,6 +22,26 @@ global maxaccel
 
 maxspeed = 100
 maxaccel = 100
+
+def callRoutines(routine):
+    #Initializing the multiprocessing
+    if __name__ == '__main__':
+        leftset = multiprocessing.Event()
+        rightset = multiprocessing.Event()
+
+        print(f"got into if statement ")
+        p1 = multiprocessing.Process(target = left_bot_routine, args= (routine,leftset,rightset))
+        p2 = multiprocessing.Process(target = right_bot_rountine, args= (routine,leftset,rightset))
+        p3 = multiprocessing.Process(target = pouringInProg)
+        #Start the processes
+        p1.start()
+        p2.start()
+        p3.start()
+        
+        p1.join()
+        p2.join()
+        
+    #Close the in progress window
 
 #functions to select the routine
 def callroutine1():
@@ -35,23 +55,7 @@ def callroutine3():
 
 
 #Function to call the routines
-def callRoutines(routine):
-    #Initializing the multiprocessing
-    if __name__ == '__main__':
-        
-        print(f"got into if statement ")
-        p1 = multiprocessing.Process(target = left_bot_routine, args= (routine,))
-        p2 = multiprocessing.Process(target = right_bot_routine, args= (routine,))
-        p3 = multiprocessing.Process(target = pouringInProg)
-        #Start the processes
-        p1.start()
-        p2.start()
-        p3.start()
-        
-        p1.join()
-        p2.join()
-        
-    #Close the in progress window
+
 
 #Popup Pouring in progress
 def pouringInProg():

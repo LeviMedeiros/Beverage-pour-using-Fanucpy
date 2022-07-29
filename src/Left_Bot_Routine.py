@@ -1,9 +1,10 @@
 #Import Robot Library
+from turtle import right
 from fanucpy import Robot
 
-def left_bot_routine(routine):
-    max_vel = 10
-    max_accel = 10
+def left_bot_routine(routine,leftset,rightset):
+    max_vel = 5
+    max_accel = 5
     
     #LeftBot.__version__()
     LeftBot = Robot(
@@ -139,7 +140,9 @@ def left_bot_routine(routine):
     if routine == 1 or routine==2:
         #Pour half the can out for standard can
         print(f"Waiting for cup to pour into")
-    
+        leftset.set()
+        rightset.wait()
+        leftset.unset()
         # LeftBot.move("joint", vals=[45, 35, -32, -22, 35, 46], velocity=max_vel, acceleration=max_accel,
         #     cnt_val=0,
         #     linear=False
