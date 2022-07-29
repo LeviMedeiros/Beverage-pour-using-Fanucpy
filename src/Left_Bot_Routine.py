@@ -99,16 +99,20 @@ def left_bot_routine(routine):
             linear=False
         )
         #input("press enter to continue")
-        LeftBot.move("joint", vals=[-41.135, 93.7, -75.15, 53.997, 77.785, 94.7], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[-41.406, 93.404, -74.870, 54.548, 77.785, 98.372], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
         #input("press enter to continue")
-        LeftBot.move("joint", vals=[-40.814, 93.226, -76.216, 53.520, 78.261, 95.459], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[-40.990, 93.161, -75.437, 54.548, 77.785, 98.371], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
         #input("press enter to continue")
+        LeftBot.move("joint", vals=[-40.687, 93.271, -75.882, 54.548, 77.785, 98.371], velocity=max_vel, acceleration=max_accel,
+            cnt_val=0,
+            linear=False
+        )
         LeftBot.move("joint", vals=[-40.814, 102, -75, 54, 78, 95.5], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
@@ -182,11 +186,14 @@ def left_bot_routine(routine):
     
     if routine != 0:
         #Leave pouring safely current waypoint totally wrong
-        LeftBot.move("joint", vals=[26, 95, -87, 61, 86, 105], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[45, -5, 0, 21, 20, 90], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-
+        LeftBot.move("joint", vals=[30, -5, -25, 21, 20, 90], velocity=max_vel, acceleration=max_accel,
+            cnt_val=0,
+            linear=False
+        )
         #Prepare to drop can
         LeftBot.move("joint", vals=[15, 66, -86, -28, 83, 93], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
