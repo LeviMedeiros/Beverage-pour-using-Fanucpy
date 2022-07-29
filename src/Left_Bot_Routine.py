@@ -160,7 +160,7 @@ def left_bot_routine(routine):
             linear=False
         )        
         #3rd pouring position
-        LeftBot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=100, acceleration=100,
+        LeftBot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
