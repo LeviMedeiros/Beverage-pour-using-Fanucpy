@@ -1,6 +1,6 @@
 #Import Robot Library
-from turtle import right
 from fanucpy import Robot
+import time
 
 def left_bot_routine(routine,leftset,rightset):
     max_vel = 5
@@ -17,7 +17,7 @@ def left_bot_routine(routine,leftset,rightset):
     LeftBot.connect() 
     print(f"Connected to left")
     
-    if routine == 0:
+    if routine == 0: #Zero Arm
         LeftBot.move(
         "joint",
         vals=[0, 0, 0, 0, 0, 90],
@@ -27,7 +27,8 @@ def left_bot_routine(routine,leftset,rightset):
         linear=False
     )
 
-    if routine==1:
+    #
+    if routine==1: #Pick up left can
         #Pick up can
         print(f"Picking up left can")
         LeftBot.move(
@@ -57,7 +58,7 @@ def left_bot_routine(routine,leftset,rightset):
         )
         print(f"Can picked up")
 
-    if routine==2:
+    if routine==2: #Pick up center can
         print(f"Picking up center can")
         LeftBot.move("joint", vals=[-23.306, 70.171, -45.003, -11.646, 60.79, 98.604],
             velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
@@ -72,7 +73,7 @@ def left_bot_routine(routine,leftset,rightset):
 
         print(f"Current pose: {LeftBot.get_curpos()}")
     
-    if routine==3:
+    if routine==3: #Pick up right can
         print(f"Picking up right can")
         print(f"Current pose: {LeftBot.get_curpos()}")
         LeftBot.move("joint", vals=[-28.901, 64.667, -45.005, -11.646, 60.79, 98.604],
@@ -87,8 +88,8 @@ def left_bot_routine(routine,leftset,rightset):
 
         print(f"Current pose: {LeftBot.get_curpos()}")
     
-    if routine==1 or routine==2 or routine==3:
-        #Open Can
+    #OPENING ROUTINE
+    if routine==1 or routine==2 or routine==3: #Open Can
         print(f"Beginning Opening Can routine")
         LeftBot.move("joint", vals=[-45, 44, -61, 16, 78, 81], velocity=max_vel, acceleration=max_accel,
             cnt_val=25,
@@ -136,58 +137,60 @@ def left_bot_routine(routine,leftset,rightset):
             linear=False
         )
 
-    # input("press enter to continue") 
-    if routine == 1 or routine==2:
+    #POURING ROUTINES
+    if routine == 1 or routine==2:#Pour into cup for small sized can
+        pour_speed = 5
+        pour_accel = 5
+        time.sleep(5)
         #Pour half the can out for standard can
         print(f"Waiting for cup to pour into")
-        leftset.set()
-        rightset.wait()
-        leftset.unset()
-        # LeftBot.move("joint", vals=[45, 35, -32, -22, 35, 46], velocity=max_vel, acceleration=max_accel,
-        #     cnt_val=0,
-        #     linear=False
-        # )
         #move to initial pour position
-        LeftBot.move("joint", vals=[33.584, 68.944, -18.5, 92.4, 91.342, 1], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[33, 68.944, -18.5, 92.4, 91.342, 1], velocity=pour_speed, acceleration=pour_accel,
             cnt_val=0,
             linear=False
         )
+        
+        print(f"left arm is set to go")
+        rightset.wait()
+        
         #start pouring
-        LeftBot.move("joint", vals=[33.584, 68.944, -18.5, 92.4, 91.342, -58], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[33, 68.944, -18.5, 92.4, 91.342, -58], velocity=pour_speed, acceleration=pour_accel,
             cnt_val=0,
             linear=False
         )
+        time.sleep(2)
+        leftset.set()
+        
         #2nd pouring position
-        LeftBot.move("joint", vals=[33.658, 75.74, -0.4, 91.740, 98.84, -118.8], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[33, 75.74, -0.4, 91.740, 98.84, -118.8], velocity=pour_speed, acceleration=pour_accel,
             cnt_val=0,
             linear=False
-        )        
+        )    
+        time.sleep(4)    
         #3rd pouring position
-        LeftBot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=pour_speed, acceleration=pour_accel,
             cnt_val=0,
             linear=False
         )
         #shake
+        time.sleep(4)
         for i in range(1,3):
-            LeftBot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=100, acceleration=100,
+            LeftBot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=100, acceleration=80,
                 cnt_val=0,
                 linear=False
             )      
-            LeftBot.move("joint", vals=[33, 54, -6, 90, 90, -180], velocity=100, acceleration=100,
+            LeftBot.move("joint", vals=[33, 54, -6, 90, 90, -180], velocity=100, acceleration=80,
                 cnt_val=0,
                 linear=False
             )
+        time.sleep(2)
+        LeftBot.move("joint", vals=[33, 54, 35, 90, 90, -35], velocity=100, acceleration=80,
+                cnt_val=0,
+                linear=False
+        )
 
-    # elif routine == 2:
-    #     #Pour the whole can out for bubly/diet coke
-    #     print(f"Waiting for cup to pour into")
-
-
-    # elif routine == 3:
-    #     print(f"Waiting for cup to pour in")
-    #     #Pour half the can out for xl beers
-    
-    if routine != 0:
+    #DROPPING ROUTINES
+    if routine != 0: #Drop can and return to starting position
         #Leave pouring safely
         LeftBot.move("joint",vals=[0, 3, -15, 90, 90, -180], velocity=max_vel,acceleration = max_accel,
             cnt_val=25,

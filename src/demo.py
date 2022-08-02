@@ -13,7 +13,7 @@ robot.__version__()
 robot.connect()
 
 # move in joint space
-robot.move("joint", vals=[11.788, 68.915, -78.836, -28.516, 81.38, 95.8965], velocity=10, acceleration=10,
+robot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=2, acceleration=2,
     cnt_val=0,
     linear=False
 ) 

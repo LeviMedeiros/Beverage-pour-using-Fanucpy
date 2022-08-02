@@ -60,27 +60,38 @@ def right_bot_rountine(routine,leftset,rightset):
         # input("press enter to continue")
         RightBot.move("joint", vals=[23, 15, -36.866, 0.521, 37.874, 0],
         velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
+  
+        pour_speed = 5
+        pour_accel = 5
         
-        #Waiting to be ready to pour
-        rightset.set()
-        leftset.wait()
-        rightset.unset()
-
+        time.sleep(3)
         #RECEIVING THE DRINK
-        # input("press enter to continue")
-        RightBot.move("joint", vals=[-40.693, 36.726, -37.054, 0.125, -2.634, 0],
-        velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)        
+        #Waiting to be ready to pour
+        RightBot.move("joint", vals=[-40, 36.726, -37.054, 0.125, -2.634, 0],
+        velocity=pour_speed, acceleration=pour_accel, cnt_val=0, linear=False)
 
-        # input("press enter to continue")
-        RightBot.move("joint", vals=[-40.693, 36.429, -36.022, 0.125, 14.261, 0],
-        velocity=10, acceleration=10, cnt_val=0, linear=False)        
+        #First receiving position
+        rightset.set()
+        print(f"right arm is set to go")
+        leftset.wait()
+        rightset.clear()
 
-        # input("press enter to continue")
-        RightBot.move("joint", vals=[-40.693, 49.2, -28.94, 0.125, 30.484, 0],
-        velocity=10, acceleration=10, cnt_val=0, linear=False)        
+        #Second receiving position
+        time.sleep(0.5) #Delay to avoid collision
+        RightBot.move("joint", vals=[-40, 36.429, -36.022, 0.125, 14.261, 0],
+        velocity=2, acceleration=2, cnt_val=0, linear=False)        
+        
+        #D
+        time.sleep(4)
+        time.sleep(0.1)
+        time.sleep(0.5)
+        RightBot.move("joint", vals=[-40, 51.341, -27.073, 0.125, 30.484, 0],
+        velocity=3, acceleration=3, cnt_val=0, linear=False)        
 
-        # input("press enter to continue")
-        RightBot.move("joint", vals=[-40.693, -24.06, -28.94, 0.125, 30.484, 0],
+        time.sleep(2) #delay to wait for arm to reach position
+        time.sleep(4) #delay while pouring
+        time.sleep(2) #delay to avoid interference
+        RightBot.move("joint", vals=[-40, -24.06, -28.94, 0.125, 30.484, 0],
         velocity=10, acceleration=10, cnt_val=0, linear=False)     
 
         #TRANSFERRING THE CUP
@@ -118,8 +129,8 @@ def right_bot_rountine(routine,leftset,rightset):
 
         #PURGE THE CUP ******DELETE LATER*******
         # input("press enter to continue")
-        RightBot.move("joint", vals=[-40.693, -24.626, 112.756, 0.125, 30.484, 0],
-        velocity=40, acceleration=40, cnt_val=0, linear=False)  
+        # RightBot.move("joint", vals=[-40.693, -24.626, 112.756, 0.125, 30.484, 0],
+        # velocity=40, acceleration=40, cnt_val=0, linear=False)  
 
         #input("press enter to continue")
         RightBot.move("joint", vals=[20, 0, 0, 0, 0, 0],

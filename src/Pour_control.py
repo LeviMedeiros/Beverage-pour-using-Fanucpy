@@ -23,24 +23,29 @@ global maxaccel
 maxspeed = 100
 maxaccel = 100
 
+
 def callRoutines(routine):
     #Initializing the multiprocessing
     if __name__ == '__main__':
+        #Set up events for syncronization
         leftset = multiprocessing.Event()
         rightset = multiprocessing.Event()
 
+        #Pop Up in progress Window
+        inProgress = Toplevel(root)
+        inProgress.geometry("750x250")
+        inProgress.title("Pouring in Progress")
+        Label(inProgress, text= "Pouring in progress", font=('Mistral 18 bold')).place(x=150,y=80)
         print(f"got into if statement ")
         p1 = multiprocessing.Process(target = left_bot_routine, args= (routine,leftset,rightset))
         p2 = multiprocessing.Process(target = right_bot_rountine, args= (routine,leftset,rightset))
-        p3 = multiprocessing.Process(target = pouringInProg)
         #Start the processes
         p1.start()
         p2.start()
-        p3.start()
         
         p1.join()
         p2.join()
-        
+        inProgress.destroy()
     #Close the in progress window
 
 #functions to select the routine
@@ -57,13 +62,7 @@ def callroutine3():
 #Function to call the routines
 
 
-#Popup Pouring in progress
-def pouringInProg():
-    #Pop Up in progress Window
-    inProgress = Toplevel(root)
-    inProgress.geometry("750x250")
-    inProgress.title("Pouring in Progress")
-    Label(inProgress, text= "Pouring in progress", font=('Mistral 18 bold')).place(x=150,y=80)
+
 
 #Setup GUI
 root = Tk()
