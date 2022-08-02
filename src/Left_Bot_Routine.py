@@ -3,8 +3,8 @@ from fanucpy import Robot
 import time
 
 def left_bot_routine(routine,leftset,rightset):
-    max_vel = 5
-    max_accel = 5
+    max_vel = 10
+    max_accel = 10
     
     #LeftBot.__version__()
     LeftBot = Robot(
@@ -17,6 +17,7 @@ def left_bot_routine(routine,leftset,rightset):
     LeftBot.connect() 
     print(f"Connected to left")
     
+    #ROUTINE TO ZERO ARM IF NECESSARY
     if routine == 0: #Zero Arm
         LeftBot.move(
         "joint",
@@ -27,7 +28,7 @@ def left_bot_routine(routine,leftset,rightset):
         linear=False
     )
 
-    #
+    #CAN PICK UP ROUTINES
     if routine==1: #Pick up left can
         #Pick up can
         print(f"Picking up left can")
@@ -61,9 +62,7 @@ def left_bot_routine(routine,leftset,rightset):
     if routine==2: #Pick up center can
         print(f"Picking up center can")
         LeftBot.move("joint", vals=[-23.306, 70.171, -45.003, -11.646, 60.79, 98.604],
-            velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
-
-        print(f"Current pose: {LeftBot.get_curpos()}")
+            velocity=50, acceleration=50, cnt_val=0, linear=False)
        
         LeftBot.move("joint", vals=[-23.306, 79.978, -45.005, -11.646, 60.79, 98.603],
             velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
@@ -71,7 +70,6 @@ def left_bot_routine(routine,leftset,rightset):
         LeftBot.move("joint", vals=[-23.306, 40, -45.017, -11.646, 60.79, 98.603],
             velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
 
-        print(f"Current pose: {LeftBot.get_curpos()}")
     
     if routine==3: #Pick up right can
         print(f"Picking up right can")
@@ -95,43 +93,47 @@ def left_bot_routine(routine,leftset,rightset):
             cnt_val=25,
             linear=False
         )
-        #input("press enter to continue")
+        # input("press enter to continue")
         LeftBot.move("joint", vals=[-42, 97, -71.5, 55, 76, 88], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-        #input("press enter to continue")
+        # input("press enter to continue")
         LeftBot.move("joint", vals=[-41.406, 93.404, -74.870, 54.548, 77.785, 98.372], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-        #input("press enter to continue")
+        # input("press enter to continue")
         LeftBot.move("joint", vals=[-40.990, 93.161, -75.437, 54.548, 77.785, 98.371], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-        #input("press enter to continue")
+        # input("press enter to continue")
         LeftBot.move("joint", vals=[-40.687, 93.271, -75.882, 54.548, 77.785, 98.371], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-        LeftBot.move("joint", vals=[-40.814, 102, -75, 54, 78, 95.5], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[-40.229, 93.36, -76.365, 54.549, 77.785, 95.971], velocity=10, acceleration=10,
             cnt_val=0,
             linear=False
         )
-        #input("press enter to continue")
+        LeftBot.move("joint", vals=[-40.814, 102, -75, 54, 78, 95.5], velocity=50, acceleration=50,
+            cnt_val=0,
+            linear=False
+        )
+        # input("press enter to continue")
         #Move to pouring
         LeftBot.move("joint", vals=[-49, 95, -87, 54, 78, 95.5], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-        #input("press enter to continue") 
+        # input("press enter to continue") 
         LeftBot.move("joint", vals=[-49, 40, -66, 0, 68, 90], velocity=max_vel, acceleration=max_accel,
             cnt_val=50,
             linear=False
         )
 
-        #input("press enter to continue") 
+        # input("press enter to continue") 
         LeftBot.move("joint", vals=[46, 35, -32, -22, 35, 117.5], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
@@ -141,7 +143,7 @@ def left_bot_routine(routine,leftset,rightset):
     if routine == 1 or routine==2:#Pour into cup for small sized can
         pour_speed = 5
         pour_accel = 5
-        time.sleep(5)
+        # time.sleep(5)
         #Pour half the can out for standard can
         print(f"Waiting for cup to pour into")
         #move to initial pour position
@@ -192,38 +194,34 @@ def left_bot_routine(routine,leftset,rightset):
     #DROPPING ROUTINES
     if routine != 0: #Drop can and return to starting position
         #Leave pouring safely
-        LeftBot.move("joint",vals=[0, 3, -15, 90, 90, -180], velocity=max_vel,acceleration = max_accel,
+        # LeftBot.move("joint",vals=[0, 3, -15, 90, 90, -180], velocity=max_vel,acceleration = max_accel,
+        #     cnt_val=25,
+        #     linear=False
+        # )
+        LeftBot.move("joint", vals=[45, -5, -15, 21, 20, 90], velocity=30, acceleration=30,
             cnt_val=25,
             linear=False
         )
-        LeftBot.move("joint", vals=[45, -5, -15, 21, 20, 90], velocity=max_vel, acceleration=max_accel,
-            cnt_val=25,
-            linear=False
-        )
-        LeftBot.move("joint", vals=[30, -5, -25, 21, 20, 90], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[30, -5, -25, 21, 20, 90], velocity=30, acceleration=30,
             cnt_val=25,
             linear=False
         )
         #Prepare to drop can
-        LeftBot.move("joint", vals=[15, 66, -86, -28, 83, 93], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[15, 66, -86, -28, 83, 93], velocity=30, acceleration=30,
             cnt_val=0,
             linear=False
         )
-        # LeftBot.move("joint", vals=[12, 69, -80, -29, 82.5, 95], velocity=max_vel, acceleration=max_accel,
-        #     cnt_val=0,
-        #     linear=False
-        # )
 
-        LeftBot.move("joint", vals=[13.048, 68.563, -80.078, -30.874, 82.578, 95.335], velocity=10, acceleration=10,
+        LeftBot.move("joint", vals=[13.048, 68.563, -80.078, -30.874, 82.578, 95.335], velocity=30, acceleration=30,
             cnt_val=0,
             linear=False
         )
         #Drop can
-        LeftBot.move("joint", vals=[11.788, 68.915, -78.836, -28.516, 81.38, 95.896], velocity=10, acceleration=10,
+        LeftBot.move("joint", vals=[11.788, 68.915, -78.836, -28.516, 81.38, 95.896], velocity=10, acceleration=5,
             cnt_val=0,
             linear=False
         )
-        LeftBot.move("joint", vals=[11.794, 66.296, -77.752, -28.6, 80.425, 96.423], velocity=10, acceleration=10,
+        LeftBot.move("joint", vals=[11.794, 66.296, -77.752, -28.6, 80.425, 96.423], velocity=10, acceleration=5,
             cnt_val=0,
             linear=False
         )

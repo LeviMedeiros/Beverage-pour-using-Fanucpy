@@ -36,18 +36,19 @@ def callRoutines(routine):
         inProgress.geometry("750x250")
         inProgress.title("Pouring in Progress")
         Label(inProgress, text= "Pouring in progress", font=('Mistral 18 bold')).place(x=150,y=80)
-        print(f"got into if statement ")
+        
+        #Set up the processes
         p1 = multiprocessing.Process(target = left_bot_routine, args= (routine,leftset,rightset))
         p2 = multiprocessing.Process(target = right_bot_rountine, args= (routine,leftset,rightset))
         #Start the processes
         p1.start()
         p2.start()
-        
+        #Wait for the processes to finish
         p1.join()
         p2.join()
+        #Close the in progress window
         inProgress.destroy()
-    #Close the in progress window
-
+    
 #functions to select the routine
 def callroutine1():
     callRoutines(1)
@@ -57,12 +58,6 @@ def callroutine2():
 
 def callroutine3():
     callRoutines(3)
-
-
-#Function to call the routines
-
-
-
 
 #Setup GUI
 root = Tk()
