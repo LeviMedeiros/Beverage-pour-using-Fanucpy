@@ -89,26 +89,25 @@ def left_bot_routine(routine,leftset,rightset):
     #OPENING ROUTINE
     if routine==1 or routine==2 or routine==3: #Open Can
         print(f"Beginning Opening Can routine")
+        #Move to the starting position for opening the can
         LeftBot.move("joint", vals=[-45, 44, -61, 16, 78, 81], velocity=max_vel, acceleration=max_accel,
             cnt_val=25,
             linear=False
         )
-        # input("press enter to continue")
         LeftBot.move("joint", vals=[-42, 97, -71.5, 55, 76, 88], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-        # input("press enter to continue")
+        
+        #Carefully getting under the can tab
         LeftBot.move("joint", vals=[-41.406, 93.404, -74.870, 54.548, 77.785, 98.372], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-        # input("press enter to continue")
         LeftBot.move("joint", vals=[-40.990, 93.161, -75.437, 54.548, 77.785, 98.371], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
-        # input("press enter to continue")
         LeftBot.move("joint", vals=[-40.687, 93.271, -75.882, 54.548, 77.785, 98.371], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
@@ -117,6 +116,7 @@ def left_bot_routine(routine,leftset,rightset):
             cnt_val=0,
             linear=False
         )
+        #Quickly drop the can to pop it open
         LeftBot.move("joint", vals=[-40.814, 102, -75, 54, 78, 95.5], velocity=50, acceleration=50,
             cnt_val=0,
             linear=False
@@ -168,15 +168,14 @@ def left_bot_routine(routine,leftset,rightset):
             cnt_val=0,
             linear=False
         )    
-        time.sleep(4)    
+        time.sleep(4)    #Delay to let liquid flow
         #3rd pouring position
         LeftBot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=pour_speed, acceleration=pour_accel,
             cnt_val=0,
             linear=False
         )
-        #shake
-        time.sleep(4)
-        for i in range(1,3):
+        time.sleep(4)  #Delay to let liquid flow
+        for i in range(1,3): #shake
             LeftBot.move("joint", vals=[33, 52, 0, 90, 90, -180], velocity=100, acceleration=80,
                 cnt_val=0,
                 linear=False
@@ -185,7 +184,9 @@ def left_bot_routine(routine,leftset,rightset):
                 cnt_val=0,
                 linear=False
             )
-        time.sleep(2)
+        time.sleep(2) #Delay to let any last drops fall out
+
+        #Leave pouring safely
         LeftBot.move("joint", vals=[33, 54, 35, 90, 90, -35], velocity=100, acceleration=80,
                 cnt_val=0,
                 linear=False
