@@ -9,7 +9,7 @@ def left_bot_routine(rightset,leftset):
     pour_accel = 5
     
     #LeftBot.__version__()
-    +
+    
     LeftBot = Robot(
         robot_model="Fanuc",
         host="192.168.5.153",

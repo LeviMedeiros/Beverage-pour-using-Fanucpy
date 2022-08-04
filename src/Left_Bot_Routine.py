@@ -62,7 +62,7 @@ def left_bot_routine(routine,leftset,rightset):
     if routine==2: #Pick up center can
         print(f"Picking up center can")
         LeftBot.move("joint", vals=[-23.306, 70.171, -45.003, -11.646, 60.79, 98.604],
-            velocity=50, acceleration=50, cnt_val=0, linear=False)
+            velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
        
         LeftBot.move("joint", vals=[-23.306, 79.978, -45.005, -11.646, 60.79, 98.603],
             velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
@@ -123,18 +123,18 @@ def left_bot_routine(routine,leftset,rightset):
         )
         # input("press enter to continue")
         #Move to pouring
-        LeftBot.move("joint", vals=[-49, 95, -87, 54, 78, 95.5], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[-49, 95, -87, 54, 78, 95.5], velocity=20, acceleration=20,
             cnt_val=0,
             linear=False
         )
         # input("press enter to continue") 
-        LeftBot.move("joint", vals=[-49, 40, -66, 0, 68, 90], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[-49, 40, -66, 0, 68, 90], velocity=20, acceleration=20,
             cnt_val=50,
             linear=False
         )
 
         # input("press enter to continue") 
-        LeftBot.move("joint", vals=[46, 35, -32, -22, 35, 117.5], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[46, 35, -32, -22, 35, 117.5], velocity=15, acceleration=15,
             cnt_val=0,
             linear=False
         )
@@ -147,7 +147,7 @@ def left_bot_routine(routine,leftset,rightset):
         #Pour half the can out for standard can
         print(f"Waiting for cup to pour into")
         #move to initial pour position
-        LeftBot.move("joint", vals=[33, 68.944, -18.5, 92.4, 91.342, 1], velocity=pour_speed, acceleration=pour_accel,
+        LeftBot.move("joint", vals=[33, 68.944, -18.5, 92.4, 91.342, 1], velocity=10, acceleration=10,
             cnt_val=0,
             linear=False
         )

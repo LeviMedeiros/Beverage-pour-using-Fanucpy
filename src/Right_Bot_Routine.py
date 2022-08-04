@@ -31,8 +31,8 @@ def right_bot_rountine(routine,leftset,rightset):
         RightBot.move(
         "joint",
         vals=[20, 0, 0, 0, 0, 0],
-        velocity=max_vel,
-        acceleration=max_accel,
+        velocity=20,
+        acceleration=20,
         cnt_val=0,
         linear=False
     )
@@ -44,22 +44,22 @@ def right_bot_rountine(routine,leftset,rightset):
         RightBot.move("joint", vals=[20, 0, 0, 0, 0, 0],
         velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
 
-        # # #PICKING UP THE CUP
-        # # input("press enter to continue")
-        # RightBot.move("joint", vals=[23.433, 85.093, -64.848, 0, 60.285, 0],
-        # velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
+        # #PICKING UP THE CUP
+        # input("press enter to continue")
+        RightBot.move("joint", vals=[23.433, 85.093, -64.848, 0, 60.285, 0],
+        velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
 
-        # # input("press enter to continue")
-        # RightBot.move("joint", vals=[22.873, 104.783, -37.108, 0.864, 35.459, 0],
-        # velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
+        # input("press enter to continue")
+        RightBot.move("joint", vals=[22.873, 104.783, -37.108, 0.864, 35.459, 0],
+        velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
 
-        # # input("press enter to continue")
-        # RightBot.move("joint", vals=[22.204, 95.207, -36.866, 0.521, 37.874, 0],
-        # velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
+        # input("press enter to continue")
+        RightBot.move("joint", vals=[22.204, 95.207, -36.866, 0.521, 37.874, 0],
+        velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
 
-        # # input("press enter to continue")
-        # RightBot.move("joint", vals=[23, 15, -36.866, 0.521, 37.874, 0],
-        # velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
+        # input("press enter to continue")
+        RightBot.move("joint", vals=[23, 15, -36.866, 0.521, 37.874, 0],
+        velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
   
         pour_speed = 5
         pour_accel = 5
@@ -68,7 +68,7 @@ def right_bot_rountine(routine,leftset,rightset):
         #RECEIVING THE DRINK
         #Waiting to be ready to pour
         RightBot.move("joint", vals=[-40, 36.726, -37.054, 0.125, -2.634, 0],
-        velocity=pour_speed, acceleration=pour_accel, cnt_val=0, linear=False)
+        velocity=3, acceleration=3, cnt_val=0, linear=False)
 
         #First receiving position
         rightset.set()
@@ -125,7 +125,7 @@ def right_bot_rountine(routine,leftset,rightset):
 
         #input("press enter to continue")
         RightBot.move("joint", vals=[35.846, 57.979, -36.898, -1.619, 20.848, 0],
-        velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=True)        
+        velocity=50, acceleration=50, cnt_val=0, linear=True)        
 
         #PURGE THE CUP ******DELETE LATER*******
         # input("press enter to continue")
@@ -134,7 +134,7 @@ def right_bot_rountine(routine,leftset,rightset):
 
         #input("press enter to continue")
         RightBot.move("joint", vals=[20, 0, 0, 0, 0, 0],
-        velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
+        velocity=50, acceleration=50, cnt_val=0, linear=False)
 
     # get robot state
     print(f"Current pose: {RightBot.get_curpos()}")
