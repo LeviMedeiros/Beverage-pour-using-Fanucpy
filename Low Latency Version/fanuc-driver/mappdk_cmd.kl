@@ -204,6 +204,7 @@ BEGIN
         joint_vals[i] = jval
         start = start + n_chars + 1
     ENDFOR
+        WRITE('Joint value',joint_vals)
     CNV_REL_JPOS(joint_vals, jpos, status)
     IF status <> 0 THEN
         resp = '1:error-in-joint-values'
@@ -229,16 +230,16 @@ BEGIN
         RETURN(resp)
     ENDIF
 
-    IF mtn_type = 1 THEN
+    --IF mtn_type = 1 THEN
         -- linear movement
-        CALL_PROGLIN('MAPPDK_MOVEL', 1, prog_index, FALSE)
-    ELSE
+        -- CALL_PROGLIN('MAPPDK_MOVEL', 1, prog_index, FALSE)
+    --ELSE
         -- joint movement
-        CALL_PROGLIN('MAPPDK_MOVE', 1, prog_index, FALSE)
-    ENDIF
+        --CALL_PROGLIN('MAPPDK_MOVE', 1, prog_index, FALSE)
+    --ENDIF
 
-    resp = '0:success'
-    RETURN(resp)
+    --resp = '0:success'
+    --RETURN(resp)
 
 END MOVEJ
 
