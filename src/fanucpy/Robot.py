@@ -51,6 +51,7 @@ class Robot(ABC):
         Returns:
             tuple(int, str): Response code and response message.
         """
+
         code, msg = resp.split(":")
         code = int(code)
 
