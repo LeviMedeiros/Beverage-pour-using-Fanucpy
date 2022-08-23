@@ -2,7 +2,7 @@ from fanucpy import Robot
 
 robot = Robot(
     robot_model="Fanuc",
-    host="192.168.5.52",
+    host="192.168.5.153",
     port=18735,
     ee_DO_type="RDO",
     ee_DO_num=7,
@@ -12,29 +12,36 @@ robot.__version__()
 
 robot.connect()
 
-
-robot.move("joint", vals=[20, 0, 0, 0, 0, 0], velocity=10, acceleration=10,
-    cnt_val=25,
+max_vel = 10
+max_accel = 10
+#Dropping Routine
+input("press enter to continue")
+robot.move("joint", vals=[-42, 97, -71.5, 55, 76, 88], velocity=max_vel, acceleration=max_accel,
+    cnt_val=0,
     linear=False
 )
-
-# move in joint space
-
-
-# robot.move("joint", vals=[33, 54, 35, 90, 90, -35], velocity=50, acceleration=80,
-#                 cnt_val=0,
-#                 linear=False
-# )
-# input("press enter to continue") 
-# robot.move("joint", vals=[11.788, 68.915, -78.836, -28.516, 81.38, 95.896], velocity=10, acceleration=10,
-#     cnt_val=0,
-#     linear=False
-# )
-# input("press enter to continue") 
-# robot.move("joint", vals=[11.794, 68.324, -78.604, -28.533, 81.174, 96], velocity=10, acceleration=10,
-#     cnt_val=0,
-#     linear=False
-# )
+input("press enter to continue")
+#Carefully getting under the can tab
+robot.move("joint", vals=[-41.322, 94.139, -74.925, 54.349, 77.784, 97.342], velocity=max_vel, acceleration=max_accel,
+    cnt_val=0,
+    linear=False
+)
+input("press enter to continue")
+robot.move("joint", vals=[-40.629, 93.832, -75.905, 53.488, 78.217, 98.255], velocity=max_vel, acceleration=max_accel,
+    cnt_val=0,
+    linear=False
+)
+input("press enter to continue")
+robot.move("joint", vals=[-40, 94.525, -76.672, 53.054, 78.613, 98.921], velocity=max_vel, acceleration=max_accel,
+    cnt_val=0,
+    linear=False
+)
+input("press enter to continue")
+#Quickly drop the can to pop it open
+robot.move("joint", vals=[-40.323, 101.418, -75.619, 53.228, 77.982, 98.061], velocity=25, acceleration=50,
+    cnt_val=0,
+    linear=False
+)
 
 # open gripper
 #robot.gripper(True)
