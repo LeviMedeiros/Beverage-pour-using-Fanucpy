@@ -22,21 +22,21 @@ global maxaccel
 
 maxspeed = 100
 maxaccel = 100
-
-
+    
 def callRoutines(routine):
     #Initializing the multiprocessing
     if __name__ == '__main__':
         #Set up events for syncronization
         leftset = multiprocessing.Event()
         rightset = multiprocessing.Event()
-
+            
         #Pop Up in progress Window
         inProgress = Toplevel(root)
         inProgress.geometry("750x250")
         inProgress.title("Pouring in Progress")
         Label(inProgress, text= "Pouring in progress", font=('Mistral 18 bold')).place(x=150,y=80)
-        
+        inProgress.focus_set()
+
         #Set up the processes
         p1 = multiprocessing.Process(target = left_bot_routine, args= (routine,leftset,rightset))
         p2 = multiprocessing.Process(target = right_bot_rountine, args= (routine,leftset,rightset))
@@ -64,22 +64,22 @@ root = Tk()
 frm = ttk.Frame(root, padding=20)
 frm.grid()
 
-#Code For First option
-Option1Image = tkinter.PhotoImage(file='bubly_Rasp_12.png')
-ttk.Label(frm,text="Bubly Option 1",font=("Arial",25)).grid(column=1,row=0)
+#Code For First option, When button is pressed callroutine1() is run
+Option1Image = tkinter.PhotoImage(file='Tall_CAN.png')
+ttk.Label(frm,text="Regular Beer",font=("Arial",25)).grid(column=1,row=0)
 ttk.Button(frm, image=Option1Image, command=callroutine1).grid(column=1, row=1)
 
-#Code for second option
-Option2Image = tkinter.PhotoImage(file='bubly_Straw.png')
-ttk.Label(frm,text="Bubly Option 2",font=("Arial",25)).grid(column=2,row=0)
+#Code for second option, When button is pressed callroutine2() is run
+Option2Image = tkinter.PhotoImage(file='Small Can.png')
+ttk.Label(frm,text="Pop and Bubly",font=("Arial",25)).grid(column=2,row=0)
 ttk.Button(frm, image=Option2Image, command=callroutine2).grid(column=2, row=1)
 
-#Code for third option
-Option3Image = tkinter.PhotoImage(file='bubly_Straw.png')
-ttk.Label(frm,text="Option 3",font=("Arial",25)).grid(column=3,row=0)
+#Code for third option, When button is pressed callroutine3() is run
+Option3Image = tkinter.PhotoImage(file='Tall_CAN.png')
+ttk.Label(frm,text="Tall Beer",font=("Arial",25)).grid(column=3,row=0)
 ttk.Button(frm,image=Option3Image, command=callroutine3).grid(column=3, row=1)
 
-
+#Code to have exit button in bottom right
 ttk.Button(frm, text="Quit", command=root.destroy).grid(column=4, row=3)
 
 #Use GUI

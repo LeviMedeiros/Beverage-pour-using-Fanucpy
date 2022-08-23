@@ -1,7 +1,7 @@
 from abc import ABC
 import socket
 import sys
-
+import time
 
 class Robot(ABC):
     def __init__(
@@ -51,6 +51,7 @@ class Robot(ABC):
         Returns:
             tuple(int, str): Response code and response message.
         """
+        cur_time = time.perf_counter()
         code, msg = resp.split(":")
         code = int(code)
 
@@ -62,6 +63,8 @@ class Robot(ABC):
         else:
             print(f"Something wrong: {msg}")
             sys.exit()
+        end_time = time.perf_counter()
+        #print(f"response handling time {end_time-cur_time:0.4f} seconds")
 
         return code, msg
 
@@ -91,9 +94,13 @@ class Robot(ABC):
 
         # 1. send
         self.comm_sock.sendall(cmd.encode())
-
+        tic = time.perf_counter()
+        
+         
         # 2. wait for a result
         resp = self.comm_sock.recv(self.sock_buff_sz).decode()
+        toc = time.perf_counter()
+        #print(f"wait for result time {toc-tic:0.4f}")
         return self.handle_response(resp)
 
     def call_prog(self, prog_name) -> None:
@@ -198,9 +205,18 @@ class Robot(ABC):
             else:
                 vs = "-" + vs
             cmd += f":{vs}"
-
-        # call send_cmd
         self.send_cmd(cmd)
+        # end of command character
+        #cmd = cmd.strip() + "\n"
+
+        # 1. send
+        # self.comm_sock.sendall(cmd.encode())
+        # tic = time.perf_counter()
+        
+        # # 2. wait for a result
+        # resp = self.comm_sock.recv(self.sock_buff_sz).decode()
+        # toc = time.perf_counter()
+        # print(f"wait for result time {toc-tic:0.4f}")
 
     def gripper(self, value) -> None:
         """Opens/closes robot gripper.
