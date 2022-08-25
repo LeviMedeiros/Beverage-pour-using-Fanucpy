@@ -29,6 +29,7 @@ def callRoutines(routine):
         #Set up events for syncronization
         leftset = multiprocessing.Event()
         rightset = multiprocessing.Event()
+        leftset2 = multiprocessing.Event()
             
         #Pop Up in progress Window
         inProgress = Toplevel(root)
@@ -38,8 +39,8 @@ def callRoutines(routine):
         inProgress.focus_set()
 
         #Set up the processes
-        p1 = multiprocessing.Process(target = left_bot_routine, args= (routine,leftset,rightset))
-        p2 = multiprocessing.Process(target = right_bot_rountine, args= (routine,leftset,rightset))
+        p1 = multiprocessing.Process(target = left_bot_routine, args= (routine,leftset,rightset,leftset2))
+        p2 = multiprocessing.Process(target = right_bot_rountine, args= (routine,leftset,rightset,leftset2))
         #Start the processes
         p1.start()
         p2.start()
@@ -66,7 +67,7 @@ frm.grid()
 
 #Code For First option, When button is pressed callroutine1() is run
 Option1Image = tkinter.PhotoImage(file='Tall_CAN.png')
-ttk.Label(frm,text="Regular Beer",font=("Arial",25)).grid(column=1,row=0)
+ttk.Label(frm,text="Beer 1",font=("Arial",25)).grid(column=1,row=0)
 ttk.Button(frm, image=Option1Image, command=callroutine1).grid(column=1, row=1)
 
 #Code for second option, When button is pressed callroutine2() is run
@@ -76,7 +77,7 @@ ttk.Button(frm, image=Option2Image, command=callroutine2).grid(column=2, row=1)
 
 #Code for third option, When button is pressed callroutine3() is run
 Option3Image = tkinter.PhotoImage(file='Tall_CAN.png')
-ttk.Label(frm,text="Tall Beer",font=("Arial",25)).grid(column=3,row=0)
+ttk.Label(frm,text="Beer 2",font=("Arial",25)).grid(column=3,row=0)
 ttk.Button(frm,image=Option3Image, command=callroutine3).grid(column=3, row=1)
 
 #Code to have exit button in bottom right

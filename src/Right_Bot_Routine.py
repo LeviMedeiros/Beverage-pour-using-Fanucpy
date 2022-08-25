@@ -1,6 +1,6 @@
 from fanucpy import Robot
 import time
-def right_bot_rountine(routine,leftset,rightset):
+def right_bot_rountine(routine,leftset,rightset,leftset2):
     max_vel = 5
     max_accel = 5
 
@@ -16,15 +16,6 @@ def right_bot_rountine(routine,leftset,rightset):
 
     RightBot.connect()
     print(f"Connected to RightBot")
-    # move in joint space
-    # RightBot.move(
-    #     "joint",
-    #     vals=[90, 0, 0, 0, 0, 0],
-    #     velocity=50,
-    #     acceleration=50,
-    #     cnt_val=0,
-    #     linear=False
-    # )
 
     # move in cartesian space
     if routine == 0:
@@ -42,12 +33,12 @@ def right_bot_rountine(routine,leftset,rightset):
 
     # input("press enter to continue")
     RightBot.move("joint", vals=[20, 0, 0, 0, 0, 0],
-    velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
+    velocity=30, acceleration=30, cnt_val=0, linear=False)
 
     # #PICKING UP THE CUP
     # input("press enter to continue")
     RightBot.move("joint", vals=[25.779, 83.807, -65.379, -1.963, 68.708, 0],
-    velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
+    velocity=50, acceleration=50, cnt_val=0, linear=False)
 
     # input("press enter to continue")
     RightBot.move("joint", vals=[23.572, 91.44, -52.614, 2.885, 44.123, 0],
@@ -69,12 +60,12 @@ def right_bot_rountine(routine,leftset,rightset):
     if routine == 2:
         #RECEIVING THE DRINK
         #Waiting to be ready to pour
-        
         RightBot.move("joint", vals=[-40, 36.726, -60, 0.125, -2.634, 0],
-        velocity=4, acceleration=4, cnt_val=0, linear=False)
-
+        velocity=50, acceleration=50, cnt_val=0, linear=False)
+        print(f"waiting for left")
+        leftset2.wait()
         RightBot.move("joint", vals=[-40, 36.726, -37.054, 0.125, -2.634, 0],
-        velocity=4, acceleration=4, cnt_val=0, linear=False)
+        velocity=10, acceleration=10, cnt_val=0, linear=False)
 
         #First receiving position
         rightset.set()
@@ -101,8 +92,9 @@ def right_bot_rountine(routine,leftset,rightset):
         velocity=10, acceleration=10, cnt_val=0, linear=False)     
     elif routine != 0:
         RightBot.move("joint", vals=[-40, 36.726, -60, 0.125, -2.634, 0],
-        velocity=4, acceleration=4, cnt_val=0, linear=False)
-
+        velocity=50, acceleration=50, cnt_val=0, linear=False)
+        print(f"waiting for left")
+        leftset2.wait()
         RightBot.move("joint", vals=[-40, 36.726, -37.054, 0.125, -2.634, 0],
         velocity=4, acceleration=4, cnt_val=0, linear=False)
 
@@ -145,19 +137,9 @@ def right_bot_rountine(routine,leftset,rightset):
     RightBot.move("joint", vals=[45.898, 56.528, -40.303, 1.26, 36.415, 0],
     velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
 
-    #PURGE THE CUP ******DELETE LATER*******
-    # input("press enter to continue")
-    # RightBot.move("joint", vals=[-40.693, -24.626, 112.756, 0.125, 30.484, 0],
-    # velocity=40, acceleration=40, cnt_val=0, linear=False)  
-
     #input("press enter to continue")
     RightBot.move("joint", vals=[20, 0, 0, 0, 0, 0],
     velocity=50, acceleration=50, cnt_val=0, linear=False)
-
-    # get robot state
-    print(f"Current pose: {RightBot.get_curpos()}")
-    print(f"Current joints: {RightBot.get_curjpos()}")
-    print(f"Energy consumption: {RightBot.get_ins_power()}")
 
 if __name__ == '__main__':
     right_bot_rountine(1)
