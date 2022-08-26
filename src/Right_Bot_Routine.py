@@ -95,7 +95,7 @@ def right_bot_rountine(routine,leftset,rightset,leftset2):
         velocity=50, acceleration=50, cnt_val=0, linear=False)
         print(f"waiting for left")
         leftset2.wait()
-        RightBot.move("joint", vals=[-40, 36.726, -37.054, 0.125, -2.634, 0],
+        RightBot.move("joint", vals=[-40, 37.923, -29.038, 0.125, -30.894, 0],
         velocity=4, acceleration=4, cnt_val=0, linear=False)
 
         #First receiving position
@@ -105,20 +105,20 @@ def right_bot_rountine(routine,leftset,rightset,leftset2):
         rightset.clear()
 
         #Second receiving position
-        time.sleep(7) #Delay to avoid collision
+        time.sleep(11.25) #Delay to avoid collision
         RightBot.move("joint", vals=[-40, 36.429, -36.022, 0.125, 4, 0],
-        velocity=1, acceleration=1, cnt_val=0, linear=False)     
-        time.sleep(7)   
+        velocity=1, acceleration=1, cnt_val=0, linear=False)
+        time.sleep(9)   
         RightBot.move("joint", vals=[-40, 36.429, -36.022, 0.125, 14.261, 0],
         velocity=1, acceleration=1, cnt_val=0, linear=False)      
-        #D
-        time.sleep(4)
+        #Delay
+        time.sleep(1)
         time.sleep(0.1)
-        time.sleep(1.5)
+        time.sleep(2)
         RightBot.move("joint", vals=[-40, 51.341, -27.073, 0.125, 30.484, 0],
         velocity=3, acceleration=3, cnt_val=0, linear=False)        
 
-        time.sleep(2) #delay to wait for arm to reach position
+        time.sleep(4.25) #delay to wait for arm to reach position
         time.sleep(4) #delay while pouring
         time.sleep(2) #delay to avoid interference
         RightBot.move("joint", vals=[-40, -24.06, -28.94, 0.125, 30.484, 0],

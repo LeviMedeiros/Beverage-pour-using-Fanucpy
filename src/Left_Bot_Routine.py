@@ -77,7 +77,7 @@ def left_bot_routine(routine,leftset,rightset,leftset2):
         LeftBot.move("joint", vals=[-28.901, 64.667, -45.005, -11.646, 60.79, 98.604],
             velocity=50, acceleration=50, cnt_val=0, linear=False)
 
-        LeftBot.move("joint", vals=[-28.9, 75.881, -45.206, -11.624, 60.985, 98.555],
+        LeftBot.move("joint", vals=[-28.9, 76, -45.206, -11.624, 60.985, 98.555],
             velocity=max_vel, acceleration=max_accel, cnt_val=0, linear=False)
 
         LeftBot.move("joint", vals=[-28.901, 40, -45.005, -11.646, 60.79, 98.604],
@@ -102,7 +102,7 @@ def left_bot_routine(routine,leftset,rightset,leftset2):
         )
 
         #Carefully getting under the can tab
-        LeftBot.move("joint", vals=[-41.964, 94.650, -74.545, 54.496, 77.357, 97.165], velocity=max_vel, acceleration=max_accel,
+        LeftBot.move("joint", vals=[-41.964, 94.750, -74.545, 54.499, 77.357, 97.165], velocity=max_vel, acceleration=max_accel,
             cnt_val=0,
             linear=False
         )
@@ -211,6 +211,19 @@ def left_bot_routine(routine,leftset,rightset,leftset2):
         leftset.set()
 
         #2nd pouring position
+        LeftBot.move("joint", vals=[33, 69.282,-16.348,92.634,92.51,-67.162], velocity=4, acceleration=4,
+            cnt_val=0,
+            linear=True
+        )
+        LeftBot.move("joint", vals=[33, 68.944, -18.5, 92.4, 91.342, -58], velocity=15, acceleration=15,
+            cnt_val=0,
+            linear=False
+        )
+        time.sleep(3)
+        LeftBot.move("joint", vals=[33, 70.125, -12.525, 92.806, 94.432, -82.109], velocity=4, acceleration=4,
+            cnt_val=0,
+            linear=True
+        )
         LeftBot.move("joint", vals=[33, 75.74, -0.4, 91.740, 98.84, -118.8], velocity=4, acceleration=4,
             cnt_val=0,
             linear=True

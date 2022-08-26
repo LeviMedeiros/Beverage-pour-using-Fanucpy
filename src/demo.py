@@ -12,34 +12,48 @@ robot.__version__()
 
 robot.connect()
 
-max_vel=5
-max_accel=5
-robot.move(
-    "joint",
-    vals=[-17.6, 65.7, -40.194, -12.6, 58.787, 99.667],
-    velocity=10,
-    acceleration=10,
+max_vel = 10
+max_accel = 10
+print(f"Beginning Opening Can routine")
+#Move to the starting position for opening the can
+robot.move("joint", vals=[-45, 44, -61, 16, 78, 81], velocity=35, acceleration=max_accel,
+    cnt_val=25,
+    linear=False
+)
+robot.move("joint", vals=[-42, 97, -71.5, 55, 76, 88], velocity=20, acceleration=max_accel,
     cnt_val=0,
     linear=False
 )
-input("yeet")
-robot.move(
-    "joint",
-    vals=[-17.773, 77.962, -44.535, -11.903, 63, 98.475],
-    velocity=max_vel,
-    acceleration=max_accel,
+
+#Carefully getting under the can tab
+robot.move("joint", vals=[-41.964, 94.750, -74.545, 54.499, 77.357, 97.165], velocity=max_vel, acceleration=max_accel,
     cnt_val=0,
     linear=False
 )
-input("yeet")
-robot.move(
-    "joint",
-    vals=[-16.812, 54.865, -36.146, -14.094, 54.99, 101.505],
-    velocity=max_vel,
-    acceleration=max_accel,
+input("press enter to continue")
+robot.move("joint", vals=[-40.933, 94.345, -76.010, 52.209, 78.032, 98.522], velocity=max_vel, acceleration=max_accel,
     cnt_val=0,
     linear=False
 )
+input("press enter to continue")
+robot.move("joint", vals=[-40.933, 94.436, -76.011, 52.208, 78.032, 112.325], velocity=max_vel, acceleration=max_accel,
+    cnt_val=0,
+    linear=False
+)
+robot.move("joint", vals=[-41.173, 94.436, -76.011, 52.208, 78.032, 117.725], velocity=15, acceleration=20,
+    cnt_val=0,
+    linear=False
+)
+robot.move("joint", vals=[-41.399, 94.436, -76.011, 52.208, 78.032, 134.885], velocity=15, acceleration=20,
+    cnt_val=0,
+    linear=False
+)
+#Move to pouring
+robot.move("joint", vals=[-49, 95, -76, 52, 78, 111], velocity=20, acceleration=20,
+    cnt_val=0,
+    linear=False
+)
+
 # open gripper
 #robot.gripper(True)
 
